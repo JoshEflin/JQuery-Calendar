@@ -1,7 +1,3 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
-
 
 // GIVEN I am using a daily planner to create a schedule
 // WHEN I open the planner
@@ -25,7 +21,34 @@ $(document).ready (function () {
   console.log("ready")
   var currentDay = $("#currentDay");
   var today = dayjs();
-  currentDay.text(today.format('MMM D, YYYY, hh:mm:ss'));
+  currentDay.text(today.format('MMM D, YYYY, hh:mm:ss'))
+  console.log(today);
+  var timeBlockArr = $(".time-block");
+  console.log(timeBlockArr);
+  
+  for (i=0; i< timeBlockArr.length; i++){
+    var timeBlock= timeBlockArr[i];
+    var scheduledTime = timeBlock.id.slice(5);
+    console.log(scheduledTime)
+    console.log(today.$H)
+  
+    if (scheduledTime < today.$H){
+    timeBlock.className = "row time-block past";
+    }else if (scheduledTime == today.$H){
+      timeBlock.className = "row time-block present";
+    }else if (scheduledTime> today.$H){
+      timeBlock.className = "row time-block future";
+    }
+  }
+    
+  
+  //  for  each item in class "time-block" if  the hour id is less than current hour
+  // set the class attribute of that  div to past
+  // else
+  // if its the same, set the class attribute of the div to present
+  // else set the class attribute of the div to future
+
+
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener

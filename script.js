@@ -1,37 +1,30 @@
 
-// GIVEN I am using a daily planner to create a schedule
-// WHEN I open the planner
-// THEN the current day is displayed at the top of the calendar
-// WHEN I scroll down
-// THEN I am presented with timeblocks for standard business hours
-// WHEN I view the timeblocks for that day
-// THEN each timeblock is color coded to indicate whether it is in the past, present, or future
-
 // use an if statement to check the current hour, and update the class of the time block so that it displays 
 // as the currect color
 
-
-// WHEN I click into a timeblock
-// THEN I can enter an event
-// WHEN I click the save button for that timeblock
-// THEN the text for that event is saved in local storage
-// WHEN I refresh the page
+// WHEN I refresh the userActivity
 // THEN the saved events persist
-$(document).ready (function () {
-  console.log("ready")
+var saveBtn = $(".saveBtn");
+var timeBlockArr = $(".time-block");
+for (i=0; i< timeBlockArr.length; i++){
+  var timeBlock= timeBlockArr[i];
+  var scheduledActivity =(JSON.parse(localStorage.getItem(timeBlock.id)))
+  console.log(scheduledActivity);
+  $(".description")[i].value = scheduledActivity;
+}
+function displayTime() {
+  
   var currentDay = $("#currentDay");
   var today = dayjs();
-  currentDay.text(today.format('MMM D, YYYY, hh:mm:ss'))
-  console.log(today);
-  var timeBlockArr = $(".time-block");
-  console.log(timeBlockArr);
+  currentDay.text(today.format('MMM DD, YYYY  hh:mm:ss '))
   
+  
+  //  for  each item in class "time-block"
   for (i=0; i< timeBlockArr.length; i++){
     var timeBlock= timeBlockArr[i];
+    var scheduledActivity =(JSON.parse(localStorage.getItem(timeBlock.id)))
     var scheduledTime = timeBlock.id.slice(5);
-    console.log(scheduledTime)
-    console.log(today.$H)
-  
+    
     if (scheduledTime < today.$H){
     timeBlock.className = "row time-block past";
     }else if (scheduledTime == today.$H){
@@ -40,13 +33,26 @@ $(document).ready (function () {
       timeBlock.className = "row time-block future";
     }
   }
-    
+}
+
+ function getSchedule() {
   
-  //  for  each item in class "time-block" if  the hour id is less than current hour
-  // set the class attribute of that  div to past
-  // else
-  // if its the same, set the class attribute of the div to present
-  // else set the class attribute of the div to future
+ }
+ 
+// sets local storage to the value of the text area at that time block when use presses save button
+function saveUserInput() {
+  var textExtraction = $(this).siblings('.description')[0];
+  var textParent= $(this).parents()[0].id
+  localStorage.setItem(textParent,JSON.stringify(textExtraction.value))
+}
+
+$(document).ready (setInterval(displayTime,1000)) 
+
+saveBtn.on('click', saveUserInput)
+  
+ 
+  
+  
 
 
   // TODO: Add a listener for click events on the save button. This code should
@@ -68,5 +74,5 @@ $(document).ready (function () {
   // the values of the corresponding textarea elements. HINT: How can the id
   // attribute of each time-block be used to do this?
   //
-  // TODO: Add code to display the current date in the header of the page.
-});
+  // TODO: Add code to display the current date in the header of the userActivity.
+

@@ -10,3 +10,6 @@ A simple calendar app made using JQuery and Bootstrap
 The Following screenshow shows the web applications appearance
  
 ![Calendar Application](./assets/Screenshot%202023-01-03%20133244.png)
+
+# Deployed Application
+https://josheflin.github.io/JQuery-Calendar/

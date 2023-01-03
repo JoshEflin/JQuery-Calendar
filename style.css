@@ -1,8 +1,12 @@
 body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
+  background-color: #fbf1c4;
 }
 
+header{
+  background-color: #d6d6f4;
+}
 textarea {
   background: transparent;
   border: none;
@@ -16,6 +20,11 @@ textarea {
   white-space: pre-wrap;
 }
 
+.clear-button {
+  background-color: #06aed5;
+  color:#000000;
+}
+
 .time-block {
   border-radius: 15px;
 }
@@ -25,18 +34,18 @@ textarea {
 }
 
 .hour {
-  background-color: #ffffff;
+  background-color: #6fa8dc;
   color: #000000;
   border-top: 1px dashed #000000;
 }
 
 .past {
-  background-color: #d3d3d3;
+  background-color: #dd7777;
   color: white;
 }
 
 .present {
-  background-color: #ff6961;
+  background-color: #d6d6f4;
   color: white;
 }
 
@@ -50,9 +59,11 @@ textarea {
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
   background-color: #06aed5;
-  color: white;
+  color: black;
 }
-
+.text-center:hover {
+cursor:default;
+}
 .saveBtn i:hover {
   font-size: 20px;
   transition: all 0.3s ease-in-out;

@@ -19,7 +19,7 @@ textarea {
 .description {
   white-space: pre-wrap;
 }
-
+/* added a reset button */
 .clear-button {
   background-color: #06aed5;
   color:#000000;
